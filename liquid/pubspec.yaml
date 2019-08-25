@@ -20,42 +20,46 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  cached_network_image: ^1.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+
 
 # The following section is specific to Flutter.
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - logo_192.png
+    - appbar_logo.png
+    - assets/main_page/main_top_1.png
+    - assets/main_page/main_top_2.png
+    - assets/main_page/main_top_3.png
+    - assets/main_page/main_top_4.png
+    - assets/main_page/main_fb_slider.png
+    - assets/venue_detail/venue_detail_slider.png
+    - assets/venue_detail/venue_detail_address.png
+    - assets/icons/icon_facebook.png
+    - assets/icons/icon_instagram.png
+    - assets/icons/icon_twitter.png
+    - assets/icons/icon_youtube.png
+    - assets/venue_list/venue_item_1.png
+    - assets/venue_list/venue_item_2.png
+    - assets/venue_list/venue_item_3.png
+    - assets/venue_list/venue_item_4.png
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   # fonts:
   #   - family: Schyler
   #     fonts:
