@@ -13,7 +13,8 @@ import 'package:liquid/pages/venue_detail_page/components/venue_detail_top_slide
 import 'components/venue_detail_redeem_button.dart';
 
 class VenueDetailPage extends StatefulWidget {
-  VenueDetailPage({Key key}) : super(key: key);
+  final dynamic venue;
+  VenueDetailPage({Key key, this.venue}) : super(key: key);
 
   @override
   _VenueDetailPageState createState() => _VenueDetailPageState();
@@ -35,6 +36,7 @@ class _VenueDetailPageState extends State<VenueDetailPage> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Container(
           height: 30,
           child: new Image.asset(
@@ -54,11 +56,11 @@ class _VenueDetailPageState extends State<VenueDetailPage> {
                 child: IntrinsicHeight(
                   child: Column(
                     children: <Widget>[
-                      VenueDetailHeader(),
-                      VenueDetailTopSlider(),
+                      VenueDetailHeader(venue: widget.venue,),
+                      VenueDetailTopSlider(venue: widget.venue,),
                       VenueDetailRedeemButton(),
-                      VenueDetailContact(),
-                      VenueDetailBottomSlider(),
+                      VenueDetailContact(venue: widget.venue,),
+                      //VenueDetailBottomSlider(),
                     ],
                   ),
                 ),

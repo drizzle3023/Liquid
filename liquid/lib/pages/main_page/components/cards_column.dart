@@ -14,11 +14,11 @@ class MainTopCardColumn extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   flex: 5,
-                  child: MainTopCard("assets/main_page/main_top_3.png"),
+                  child: MainTopCard("assets/main_page/main_top_1.png"),
                 ),
                 Expanded(
                   flex: 5,
-                  child: MainTopCard("assets/main_page/main_top_4.png"),
+                  child: MainTopCard("assets/main_page/main_top_2.png"),
                 ),
               ],
             ),
@@ -28,11 +28,11 @@ class MainTopCardColumn extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   flex: 5,
-                  child: MainTopCard("assets/main_page/main_top_1.png"),
+                  child: MainTopCard("assets/main_page/main_top_3.png"),
                 ),
                 Expanded(
                   flex: 5,
-                  child: MainTopCard("assets/main_page/main_top_2.png"),
+                  child: MainTopCard("assets/main_page/main_top_4.png"),
                 ),
               ],
             ),

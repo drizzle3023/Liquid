@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:liquid/components/star_rating.dart';
 
 class VenueDetailHeader extends StatelessWidget {
+  final dynamic venue;
+  VenueDetailHeader({this.venue});
   TextStyle style = TextStyle(
       fontFamily: 'Montserrat', fontSize: 30, fontWeight: FontWeight.bold);
 
@@ -13,7 +15,7 @@ class VenueDetailHeader extends StatelessWidget {
           children: <Widget>[
             Center(
               child: Text(
-                "McSweeney's",
+                venue["name"].toString().length > 20 ? venue["name"].toString().substring(0, 20) + "..." : venue["name"],
                 style: style,
               ),
             ),
@@ -24,19 +26,19 @@ class VenueDetailHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(
-                  flex: 3,
-                  child: Container(child: Text("Bar/lounge")),
+                  flex: 5,
+                  child: Container(child: Text(venue["category"])),
                 ),
+//                Expanded(
+//                  flex: 4,
+//                  child: Center(
+//                      child: StarDisplay(
+//                    value: 5,
+//                  )),
+//                ),
                 Expanded(
-                  flex: 4,
-                  child: Center(
-                      child: StarDisplay(
-                    value: 5,
-                  )),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Container(child: Text("0.31 km"), alignment: Alignment.centerRight,),
+                  flex: 5,
+                  child: Container(child: Text(double.parse(venue["distance"].toString()).toStringAsFixed(2) + " km"), alignment: Alignment.centerRight,),
                 ),
               ],
             )

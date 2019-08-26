@@ -41,5 +41,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationUsageDescription</key>
+    <string>Liquid needs your location information for getting nearest venues.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Liquid needs your location information for getting nearest venues.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Liquid needs your location information for getting nearest venues.</string>
 </dict>
 </plist>

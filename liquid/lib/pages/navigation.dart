@@ -58,6 +58,7 @@ class _NavigationPageState extends State<NavigationPage> {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Container(
             height: 30,
             child: new Image.asset(
@@ -113,32 +114,44 @@ class _NavigationPageState extends State<NavigationPage> {
                   ),
                 ),
                 new ListTile(
-                  title: new Text("Logout", style: style),
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return new AlertDialog(
-                            title: new Text('Are you sure?'),
-                            content: new Text('Do you want to log out?'),
-                            actions: <Widget>[
-                              new FlatButton(
-                                onPressed: () => Navigator.of(context).pop(false),
-                                child: new Text('No'),
-                              ),
-                              new FlatButton(
-                                onPressed: () {
-                                  //SharedPreferencesHelper.clearStoredData();
-                                  Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/login', (Route<dynamic> route) => false);
-                                },
-                                child: new Text('Yes'),
-                              ),
-                            ],
-                          );
-                        });
-                  },
+                  title: new Text("Profile"),
                 ),
+                new ListTile(
+                  title: new Text("About"),
+                ),
+                new ListTile(
+                  title: new Text("Terms and Conditions"),
+                ),
+                new ListTile(
+                  title: new Text("Privacy"),
+                ),
+//                new ListTile(
+//                  title: new Text("Logout"),
+//                  onTap: () {
+//                    showDialog(
+//                        context: context,
+//                        builder: (BuildContext context) {
+//                          return new AlertDialog(
+//                            title: new Text('Are you sure?'),
+//                            content: new Text('Do you want to log out?'),
+//                            actions: <Widget>[
+//                              new FlatButton(
+//                                onPressed: () => Navigator.of(context).pop(false),
+//                                child: new Text('No'),
+//                              ),
+//                              new FlatButton(
+//                                onPressed: () {
+//                                  //SharedPreferencesHelper.clearStoredData();
+//                                  Navigator.of(context).pushNamedAndRemoveUntil(
+//                                      '/login', (Route<dynamic> route) => false);
+//                                },
+//                                child: new Text('Yes'),
+//                              ),
+//                            ],
+//                          );
+//                        });
+//                  },
+//                ),
               ],
             )),
       ),

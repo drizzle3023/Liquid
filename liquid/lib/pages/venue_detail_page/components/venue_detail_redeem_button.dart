@@ -33,9 +33,7 @@ class VenueDetailRedeemButton extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text('Tap'),
-              ));
+
             },
           ),
         ),

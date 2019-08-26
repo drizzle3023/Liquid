@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:liquid/components/star_rating.dart';
 
 class VenueDetailContact extends StatelessWidget {
-  TextStyle style = TextStyle(
-      fontFamily: 'Montserrat', fontSize: 30, fontWeight: FontWeight.bold);
+  final dynamic venue;
+  VenueDetailContact({this.venue});
 
   @override
   Widget build(BuildContext context) {
+    TextStyle style = TextStyle(
+        fontFamily: 'Montserrat', fontSize: 30, fontWeight: FontWeight.bold);
     return Padding(
       padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
       child: Column(
@@ -25,10 +27,10 @@ class VenueDetailContact extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                                "Grosvenor House, M floor 323 Al Jalillames Road"),
-                            Text("Dubai Marina"),
-                            Text("Dubai"),
-                            Text("United Arab Emirates"),
+                                venue["address2"] ?? ""),
+                            Text(venue["address1"] ?? ""),
+                            Text(venue["city"] ?? ""),
+                            Text(venue["country"] ?? ""),
                           ],
                         ),
                       ),
@@ -63,7 +65,7 @@ class VenueDetailContact extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
                         child: Center(
                           child: Text(
-                            "+971 42 235 8450",
+                            venue["phone"] ?? "",
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
@@ -81,7 +83,7 @@ class VenueDetailContact extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
                         child: Center(
                             child: Text(
-                          "info@mcsweeneysbar.ae",
+                              venue["email"] ?? "",
                           style: TextStyle(fontSize: 12),
                         )),
                       ),
@@ -118,8 +120,8 @@ class VenueDetailContact extends StatelessWidget {
                             child: Center(
                               child: Column(
                                 children: <Widget>[
-                                  Text("11AM - 2AM"),
-                                  Text("(Friday 9AM - 3AM)")
+                                  Text(venue["opening_hours"] ?? ""),
+                                  //Text("(Friday 9AM - 3AM)")
                                 ],
                               ),
                             ),

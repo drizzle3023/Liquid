@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class VenueDetailTopSlider extends StatelessWidget {
-  final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
+  final dynamic venue;
+  VenueDetailTopSlider({this.venue});
+  final List<String> images = ["mainImage", "image1", "image2", "image3", "image4", "image5"];
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +14,7 @@ class VenueDetailTopSlider extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.3,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: numbers.length,
+                itemCount: images.length,
                 itemBuilder: (context, index) {
                   return Container(
                     //width: MediaQuery.of(context).size.width * 0.6,
@@ -20,9 +23,17 @@ class VenueDetailTopSlider extends StatelessWidget {
                         child: InkWell(
                           child: Container(
                             child: Center(
-                              child: new Image.asset(
-                                "assets/venue_detail/venue_detail_slider.png",
-                                fit: BoxFit.cover,
+                              child: CachedNetworkImage(
+                                placeholder: (context, url) =>
+                                    Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                errorWidget: (context, url, error) =>
+                                    Center(
+                                        child: new Icon(Icons.error)),
+                                imageUrl: venue[images[index]] ??
+                                    "",
+                                fit: BoxFit.contain,
                               ),
                             ),
                           ),
