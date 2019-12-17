@@ -11,7 +11,7 @@ description: Liquid application.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -19,14 +19,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  camera:
+  path_provider:
+  path:
+  image_picker: ^0.6.1+4
+  toast: ^0.1.5
   cupertino_icons: ^0.1.2
   cached_network_image: ^1.1.1
   location: ^2.3.5
   firebase_core: ^0.4.0+9
   firebase_database: ^3.0.6
   firebase_auth: ^0.14.0+4
-
+  firebase_storage: ^3.0.6
+  url_launcher: ^5.2.5
+  speech_bubble: ^0.0.5
+  shared_preferences: ^0.5.3+1
+  provider: ^3.1.0
+  flutter_form_builder: ^3.5.2
+  google_maps_flutter: ^0.5.21
+  zefyr: ^0.8.0
+  flutter_swiper: ^1.1.6
+  dotted_border: ^1.0.2
+  mailer: ^3.0.3
+  async: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +65,7 @@ flutter:
     - assets/main_page/main_fb_slider.png
     - assets/venue_detail/venue_detail_slider.png
     - assets/venue_detail/venue_detail_address.png
+    - assets/venue_detail/venue_detail_address.jpg
     - assets/icons/icon_facebook.png
     - assets/icons/icon_instagram.png
     - assets/icons/icon_twitter.png
@@ -58,11 +74,21 @@ flutter:
     - assets/venue_list/venue_item_2.png
     - assets/venue_list/venue_item_3.png
     - assets/venue_list/venue_item_4.png
+    - assets/signin_background.jpg
+    - assets/signup_background.jpg
+    - assets/signup_welcome.jpg
+    - assets/splash.jpg
 
   fonts:
     - family: Montserrat
       fonts:
         - asset: fonts/Montserrat-Regular.ttf
+    - family: Helvetica
+      fonts:
+        - asset: fonts/Helvetica.ttf
+    - family: SnellBT
+      fonts:
+        - asset: fonts/SnellBT-Regular.otf
 
 
   # fonts:

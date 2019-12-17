@@ -1,19 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:liquid/components/main_top_card.dart';
-import 'package:liquid/pages/main_page/components/cards_column.dart';
-import 'package:liquid/pages/main_page/components/fb_venues_slider.dart';
-import 'package:liquid/pages/main_page/components/lifestyle_locations_slider.dart';
-import 'package:liquid/pages/venue_detail_page/components/venue_detail_bottom_slider.dart';
+import 'package:liquid/models/Venue.dart';
 import 'package:liquid/pages/venue_detail_page/components/venue_detail_contact.dart';
 import 'package:liquid/pages/venue_detail_page/components/venue_detail_header.dart';
 import 'package:liquid/pages/venue_detail_page/components/venue_detail_top_slider.dart';
+import 'package:liquid/utils/globals.dart';
 
 import 'components/venue_detail_redeem_button.dart';
 
 class VenueDetailPage extends StatefulWidget {
-  final dynamic venue;
+  final Venue venue;
   VenueDetailPage({Key key, this.venue}) : super(key: key);
 
   @override
@@ -21,29 +16,43 @@ class VenueDetailPage extends StatefulWidget {
 }
 
 class _VenueDetailPageState extends State<VenueDetailPage> {
-  int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.venue != null) {
+      Globals.selectedVenue = widget.venue;
+    }
+//    if (widget.venue == null || widget.venue["name"] == null) {
+//      Navigator.of(context).pop();
+//      Navigator.push(
+//          context,
+//          MaterialPageRoute(
+//              builder: (context) =>
+//                  MainPage()));
+//    }
   }
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(
-        fontFamily: 'Montserrat', fontSize: 30, fontWeight: FontWeight.bold);
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Container(
-          height: 30,
-          child: new Image.asset(
-            "assets/appbar_logo.png",
-            fit: BoxFit.cover,
+        title: InkWell(
+          child: Container(
+            height: 30,
+            child: new Image.asset(
+              "assets/appbar_logo.png",
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
+          onTap: () {
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
+          },
+        )
       ),
       body: OrientationBuilder(builder: (context, orientation) {
         return LayoutBuilder(
@@ -56,10 +65,10 @@ class _VenueDetailPageState extends State<VenueDetailPage> {
                 child: IntrinsicHeight(
                   child: Column(
                     children: <Widget>[
-                      VenueDetailHeader(venue: widget.venue,),
-                      VenueDetailTopSlider(venue: widget.venue,),
-                      VenueDetailRedeemButton(),
-                      VenueDetailContact(venue: widget.venue,),
+                      VenueDetailHeader(venue: Globals.selectedVenue,),
+                      VenueDetailTopSlider(venue: Globals.selectedVenue.toJson(),),
+                      VenueDetailRedeemButton(venue: Globals.selectedVenue,),
+                      VenueDetailContact(venue: Globals.selectedVenue,),
                       //VenueDetailBottomSlider(),
                     ],
                   ),
@@ -69,36 +78,20 @@ class _VenueDetailPageState extends State<VenueDetailPage> {
           },
         );
       }),
-//      bottomNavigationBar: BottomNavigationBar(
-//        type: BottomNavigationBarType.fixed,
-//        backgroundColor: Color(0xFF333333),
-//        unselectedItemColor: Colors.white,
-//        items: const <BottomNavigationBarItem>[
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.home),
-//            title: Text('Home'),
-//          ),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.public),
-//            title: Text('Venues'),
-//          ),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.notifications_active),
-//            title: Text('News'),
-//          ),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.local_florist),
-//            title: Text('Events'),
-//          ),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.map),
-//            title: Text('Map'),
-//          ),
-//        ],
-//        currentIndex: _selectedIndex,
-//        selectedItemColor: Colors.amber[800],
-//        onTap: _onItemTapped,
+//      floatingActionButton: FloatingActionButton.extended(
+//        onPressed: () {
+//      //    Provider.of<LoginState>(context).signin();
+//          Navigator.push(
+//              context,
+//              MaterialPageRoute(
+//                  builder: (context) =>
+//                      RedeemRootPage()));
+//        },
+//        label: Text("Redeem"),
+//        icon: Icon(Icons.thumb_up),
+//        backgroundColor: Colors.pink,
 //      ),
+
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:liquid/models/Venue.dart';
 import 'package:liquid/pages/venue_detail_page/venue_detail_page.dart';
 import 'package:location/location.dart';
 
@@ -33,7 +34,7 @@ class LifeStyleLocationsSlider extends StatelessWidget {
                     double.parse(value["longitude"]));
                 value["distance"] = distance;
                 if (value["category"] != null &&
-                    value["category"].toString() == "lifestyle") {
+                    value["category"]["id"] == 2 && value["isActive"] != null && value["isActive"] == true ) {
                   item.add(value);
                 }
               }
@@ -81,7 +82,7 @@ class LifeStyleLocationsSlider extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                VenueDetailPage(venue: item[index],)));
+                                                VenueDetailPage(venue: Venue.fromJson(item[index]))));
                                   },
                                 ),
                               ));

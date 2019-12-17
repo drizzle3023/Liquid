@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class VenueDetailTopSlider extends StatelessWidget {
   final dynamic venue;
   VenueDetailTopSlider({this.venue});
-  final List<String> images = ["mainImage", "image1", "image2", "image3", "image4", "image5"];
+  final List<String> images = ["logoImage" ,"mainImage", "image1", "image2", "image3", "image4", "image5"];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class VenueDetailTopSlider extends StatelessWidget {
                     //width: MediaQuery.of(context).size.width * 0.6,
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(3.0, 2, 3, 2),
-                        child: InkWell(
+                        child: venue[images[index]] != null && venue[images[index]] != "" ? InkWell(
                           child: Container(
                             child: Center(
                               child: CachedNetworkImage(
@@ -37,7 +37,7 @@ class VenueDetailTopSlider extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ),
+                        ) : Container(),
                       )
                   );
                 })));

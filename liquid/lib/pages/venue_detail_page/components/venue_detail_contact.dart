@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:liquid/components/star_rating.dart';
+import 'package:liquid/models/Venue.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VenueDetailContact extends StatelessWidget {
-  final dynamic venue;
+  final Venue venue;
   VenueDetailContact({this.venue});
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(
-        fontFamily: 'Montserrat', fontSize: 30, fontWeight: FontWeight.bold);
     return Padding(
       padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          Container(
+            color: Color(0xFFEEEEEE),
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+            child: Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text("About " + venue.name, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                  Text(venue.about ?? "")
+                ],
+              ),
+            )
+          ),
+
           Container(
             color: Color(0xFFEEEEEE),
             child: Padding(
@@ -26,11 +42,10 @@ class VenueDetailContact extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                                venue["address2"] ?? ""),
-                            Text(venue["address1"] ?? ""),
-                            Text(venue["city"] ?? ""),
-                            Text(venue["country"] ?? ""),
+                            Text(venue.address2 ?? ""),
+                            Text(venue.address1 ?? ""),
+                            Text(venue.city ?? ""),
+                            Text(venue.country ?? ""),
                           ],
                         ),
                       ),
@@ -41,7 +56,7 @@ class VenueDetailContact extends StatelessWidget {
                     child: Center(
                       child: Container(
                         child: new Image.asset(
-                            "assets/venue_detail/venue_detail_address.png"),
+                            "assets/venue_detail/venue_detail_address.jpg"),
                       ),
                     ),
                   )
@@ -65,7 +80,7 @@ class VenueDetailContact extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
                         child: Center(
                           child: Text(
-                            venue["phone"] ?? "",
+                            venue.phone,
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
@@ -83,7 +98,7 @@ class VenueDetailContact extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
                         child: Center(
                             child: Text(
-                              venue["email"] ?? "",
+                              venue.email,
                           style: TextStyle(fontSize: 12),
                         )),
                       ),
@@ -96,8 +111,9 @@ class VenueDetailContact extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          Container(
+          IntrinsicHeight(
             child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Expanded(
                   flex: 5,
@@ -115,12 +131,12 @@ class VenueDetailContact extends StatelessWidget {
                               style: TextStyle(fontSize: 14),
                             )),
                           ),
-                          SizedBox(
-                            height: 50,
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(5, 0, 5, 15),
                             child: Center(
                               child: Column(
                                 children: <Widget>[
-                                  Text(venue["opening_hours"] ?? ""),
+                                  Text(venue.openingHours),
                                   //Text("(Friday 9AM - 3AM)")
                                 ],
                               ),
@@ -147,49 +163,86 @@ class VenueDetailContact extends StatelessWidget {
                                 style: TextStyle(fontSize: 14),
                               )),
                             ),
-                            SizedBox(
-                              height: 50,
+                            Container(
+                              height: 80,
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(12, 0, 12, 12),
                                 child: Center(
                                   child: Row(
                                     children: <Widget>[
+                                      (venue.instagramUrl != null && venue.instagramUrl.length > 0) ?
                                       Expanded(
-                                          flex: 25,
+                                          flex: 1,
                                           child: Padding(
                                             padding: EdgeInsets.all(6),
                                             child: InkWell(
                                               child: new Image.asset(
                                                   "assets/icons/icon_instagram.png"),
+                                              onTap: () async {
+                                                final url = venue.instagramUrl;
+                                                if (await canLaunch(url)) {
+                                                await launch(url);
+                                                } else {
+                                                throw 'Could not launch $url';
+                                                }
+                                              }
+                                              ,
                                             ),
-                                          )),
+                                          )) : Container(),
+                                      (venue.facebookUrl != null && venue.facebookUrl.length > 0) ?
                                       Expanded(
-                                          flex: 25,
+                                          flex: 1,
                                           child: Padding(
                                             padding: EdgeInsets.all(6),
                                             child: InkWell(
                                               child: new Image.asset(
                                                   "assets/icons/icon_facebook.png"),
+                                              onTap: () async {
+                                                final url = venue.facebookUrl;
+                                                if (await canLaunch(url)) {
+                                                  await launch(url);
+                                                } else {
+                                                  throw 'Could not launch $url';
+                                                }
+                                              }
                                             ),
-                                          )),
+                                          )):Container(),
+                                      (venue.twitterUrl != null && venue.twitterUrl.length > 0) ?
                                       Expanded(
-                                          flex: 25,
+                                          flex: 1,
                                           child: Padding(
                                             padding: EdgeInsets.all(6),
                                             child: InkWell(
                                               child: new Image.asset(
                                                   "assets/icons/icon_twitter.png"),
+                                              onTap: () async {
+                                                final url = venue.twitterUrl;
+                                                if (await canLaunch(url)) {
+                                                  await launch(url);
+                                                } else {
+                                                  throw 'Could not launch $url';
+                                                }
+                                              }
                                             ),
-                                          )),
+                                          )) : Container(),
+                                      (venue.youtubeUrl != null && venue.youtubeUrl.length > 0) ?
                                       Expanded(
-                                          flex: 25,
+                                          flex: 1,
                                           child: Padding(
                                             padding: EdgeInsets.all(6),
                                             child: InkWell(
                                               child: new Image.asset(
                                                   "assets/icons/icon_youtube.png"),
+                                              onTap: () async {
+                                                final url = venue.youtubeUrl;
+                                                if (await canLaunch(url)) {
+                                                  await launch(url);
+                                                } else {
+                                                  throw 'Could not launch $url';
+                                                }
+                                              }
                                             ),
-                                          )),
+                                          )) : Container(),
                                     ],
                                   ),
                                 ),
@@ -206,4 +259,5 @@ class VenueDetailContact extends StatelessWidget {
       ),
     );
   }
+
 }

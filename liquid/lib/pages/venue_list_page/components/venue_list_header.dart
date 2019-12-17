@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:liquid/components/star_rating.dart';
 
 class VenueListHeader extends StatelessWidget {
-  TextStyle style = TextStyle(
-      fontFamily: 'Montserrat', fontSize: 30, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class VenueListHeader extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         new Icon(Icons.sort, size: 12,),
-                        new Text("ORDER BY", style: TextStyle(fontSize: 12),)
+                        new Text("ORDER BY NAME", style: TextStyle(fontSize: 12),)
                       ],
                     ),
                   ),
@@ -39,31 +37,48 @@ class VenueListHeader extends StatelessWidget {
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          new Icon(Icons.filter_list, size: 12,),
-                          new Text("FILTER", style: TextStyle(fontSize: 12),)
+                          new Icon(Icons.sort, size: 12,),
+                          new Text("ORDER BY DISTANCE", style: TextStyle(fontSize: 12),)
                         ],
                       ),
                     ),
                   ),
                 )
             ),
-            Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 2, right: 2),
-                  child: Container(
-                    child: RaisedButton(
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          new Icon(Icons.search, size: 12,),
-                          new Text("SEARCH", style: TextStyle(fontSize: 12),)
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-            ),
+//            Expanded(
+//                flex: 1,
+//                child: Padding(
+//                  padding: EdgeInsets.only(left: 2, right: 2),
+//                  child: Container(
+//                    child: RaisedButton(
+//                      child: new Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                        children: <Widget>[
+//                          new Icon(Icons.filter_list, size: 12,),
+//                          new Text("FILTER", style: TextStyle(fontSize: 12),)
+//                        ],
+//                      ),
+//                    ),
+//                  ),
+//                )
+//            ),
+//            Expanded(
+//                flex: 1,
+//                child: Padding(
+//                  padding: EdgeInsets.only(left: 2, right: 2),
+//                  child: Container(
+//                    child: RaisedButton(
+//                      child: new Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                        children: <Widget>[
+//                          new Icon(Icons.search, size: 12,),
+//                          new Text("SEARCH", style: TextStyle(fontSize: 12),)
+//                        ],
+//                      ),
+//                    ),
+//                  ),
+//                )
+//            ),
 
           ],
         )

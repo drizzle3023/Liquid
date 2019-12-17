@@ -1,36 +1,36 @@
-import 'dart:io';
 
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:liquid/pages/fb.dart';
-import 'package:liquid/pages/lifestyle.dart';
+import 'package:liquid/pages/closest_fb_page/closest_fb_page.dart';
+import 'package:liquid/pages/closest_lifestyle_page/closest_lifestyle_page.dart';
 import 'package:liquid/pages/main_page/components/cards_column.dart';
 import 'package:liquid/pages/main_page/components/fb_venues_slider.dart';
 import 'package:liquid/pages/main_page/components/lifestyle_locations_slider.dart';
 import 'package:location/location.dart';
 
+typedef Null IndutryNightsSelectedCallback();
 class MainPage extends StatefulWidget {
-  MainPage({Key key}) : super(key: key);
+  final IndutryNightsSelectedCallback onIndustryNightsSelected;
+  MainPage({Key key, this.onIndustryNightsSelected}) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  var location = new Location();
 
+  var location = new Location();
   LocationData currentLocation;
+
+  final AsyncMemoizer _memoizer = AsyncMemoizer();
+
   @override
   void initState() {
     super.initState();
-//    location.getLocation().then((val) {
-//      currentLocation = val;
-//    });
   }
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(
-        fontFamily: 'Montserrat', fontSize: 15, fontWeight: FontWeight.bold);
 
     return
       FutureBuilder (
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
                   child: IntrinsicHeight(
                     child: Column(
                       children: <Widget>[
-                        MainTopCardColumn(),
+                        MainTopCardColumn(onIndustryNightsSelected: widget.onIndustryNightsSelected,),
                         Padding(
                           padding: EdgeInsets.fromLTRB(14, 0, 14, 0),
                           child: Container(
@@ -128,10 +128,11 @@ class _MainPageState extends State<MainPage> {
 
   }
 
-  Future <LocationData>_getLocation() async {
-
+  _getLocation() async {
+    return this._memoizer.runOnce(() async {
       var result = await location.getLocation();
       return result;
+    });
   }
 
 }

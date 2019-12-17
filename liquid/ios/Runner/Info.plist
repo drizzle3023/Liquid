@@ -47,5 +47,11 @@
     <string>Liquid needs your location information for getting nearest venues.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>Liquid needs your location information for getting nearest venues.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Liquid needs to use your Camera to upload images.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Liquid needs to access to your Photo Library to upload images.</string>
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
 </dict>
 </plist>

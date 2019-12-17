@@ -13,6 +13,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Liquid"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAwnC--Al1DCJdqPecCf1Lpd1Y_fYRUxoQ"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

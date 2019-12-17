@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:liquid/components/star_rating.dart';
+import 'package:liquid/models/Venue.dart';
 
 class VenueDetailHeader extends StatelessWidget {
-  final dynamic venue;
+  final Venue venue;
   VenueDetailHeader({this.venue});
-  TextStyle style = TextStyle(
-      fontFamily: 'Montserrat', fontSize: 30, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
+    TextStyle style = TextStyle(
+        fontFamily: 'Helvetica', fontSize: 25, fontWeight: FontWeight.bold);
+
     return Padding(
         padding: EdgeInsets.all(12.0),
         child: Column(
           children: <Widget>[
             Center(
               child: Text(
-                venue["name"].toString().length > 20 ? venue["name"].toString().substring(0, 20) + "..." : venue["name"],
+                venue.name,
+                overflow: TextOverflow.visible,
+                maxLines: 2,
                 style: style,
+                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(
                   flex: 5,
-                  child: Container(child: Text(venue["category"])),
+                  child: Container(child: Text(venue.subCategory.name)),
                 ),
 //                Expanded(
 //                  flex: 4,
@@ -38,7 +43,7 @@ class VenueDetailHeader extends StatelessWidget {
 //                ),
                 Expanded(
                   flex: 5,
-                  child: Container(child: Text(double.parse(venue["distance"].toString()).toStringAsFixed(2) + " km"), alignment: Alignment.centerRight,),
+                  child: Container(child: Text(double.parse(venue.distance.toString()).toStringAsFixed(2) + " km"), alignment: Alignment.centerRight,),
                 ),
               ],
             )
