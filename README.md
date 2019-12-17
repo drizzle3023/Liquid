@@ -1,5 +1,3 @@
-# Liquid
-
-Flutter Project
+# Liquid - Flutter
 
 Liquid Hospitality Card
